@@ -7,12 +7,12 @@ Simplify the flipbook process that is currently being used
 User creates config file
 
 Information User Provides in config file:
-Title of Work		""
-# of Pages		""
+Title of Work		      ""
+Number of Pages		    ""
 Height of Scans (px)	""
-Width of Scans (px)	""
-Base Filename		""
-Base URL		""
+Width of Scans (px)	  ""
+Base Filename		      ""
+Base URL		          ""
 
 
 Script will create a directory where files will be placed and
