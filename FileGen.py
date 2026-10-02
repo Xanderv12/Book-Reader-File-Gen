@@ -1,6 +1,8 @@
 import configparser
 import os
 
+
+
 config = configparser.ConfigParser()
 config.read('config/config.ini')
 
@@ -36,6 +38,7 @@ lines = [
     "display: none;\n", 
     "}"
 ]
+
 try:
     with open(filepath, "x") as pl:
         pl.writelines(lines)
@@ -43,36 +46,56 @@ try:
 except FileExistsError:
     print("BookReaderDemo.css already exists.")
 
+
+
 # 3) Read contents of text file that holds the HTML
-with open('other/test.txt', 'r') as pl:
-    for line in pl:
-        if 'marker' in line:  # Replace with your condition
-            break
-        html1 = line.strip() #first part of html
-        with open('Rename/index.html', 'a') as f:
-            f.write(html1,{titl}) # Write the first part of the HTML with the inserted title
 
+def genhtml(para): # Function to write the HTML content to the index.html file
+    with open('Rename/index.html', 'a') as f:
+        f.write(para)
+        f.write('\n')  # Add a newline after each line
+if os.path.exists('Rename/index.html'):
+    print("index.html already exists.") # Check if index.html already exists
+else:
+    with open('other/test.txt', 'r', encoding='utf-8') as pl:
+        for line in pl:
+            if 'marker' in line:  # Replace with your condition
+                break
+            html1 = line.strip() # first part of html
+            genhtml(html1)
 
-with open('other/test.txt', 'r') as pl:
-    in_section = False
-    for line in pl:
-        if 'target1_marker' in line:
-            in_section = True
-            continue
-        if 'target2_marker' in line:
-            in_section = False
-            break
-        if in_section:
-            html2 = line.strip() #second part of html
-            #print(html2) # Test to see the conten
-            
-with open('other/test.txt', 'r') as pl:
-    target_found = False
-    for line in pl:
-        if 'target3_marker' in line:
-            target_found = True
-            continue
-        if target_found:
-            html3 = line.strip() #third part of html
-            #print(html3) # Test to see the content
+    genhtml(titl) # Adding a the Title to the index.html file
+                
+    with open('other/test.txt', 'r', encoding='utf-8') as pl:
+        in_section = False
+        for line in pl:
+            if 'target1_marker' in line:
+                in_section = True
+                continue
+            if 'target2_marker' in line:
+                in_section = False
+                break
+            if in_section:
+                html2 = line.strip() #second part of html
+                genhtml(html2)
+                #print(html2) # Test to see the conten
 
+    genhtml(titl) # Adding a the Title to the index.html file
+                
+    with open('other/test.txt', 'r', encoding='utf-8') as pl:
+        target_found = False
+        for line in pl:
+            if 'target3_marker' in line:
+                target_found = True
+                continue
+            if target_found:
+                html3 = line.strip() #third part of html
+                genhtml(html3)
+                #print(html3) # Test to see the content
+
+    if os.path.exists('Rename/index.html'):
+        print("index.html created successfully.") # Check if index.html was created successfully
+
+# Try to see if can be optimized to read the file once and write to index.html in one go, instead of multiple reads and writes.
+
+# 4) Create the BookReaderDemo.js file
