@@ -50,7 +50,10 @@ try:
 except FileExistsError:
     print("BookReaderDemo.css already exists.")
 
-
+# Folder and Files Names that contains the template files of the HTML and JavaScript content
+tempPath = 'templates' 
+htmlPath = 'html.txt'
+jsPath = 'Javascript.txt'
 
 # 3) Read contents of text file that holds the HTML
 
@@ -62,7 +65,7 @@ def genhtml(para): # Function to write the HTML content to the index.html file
 if os.path.exists(f'{contentDir}/index.html'):
     print("index.html already exists.") # Check if index.html already exists
 else:
-    with open('other/test.txt', 'r', encoding='utf-8') as pl:
+    with open(f'{tempPath}/{htmlPath}', 'r', encoding='utf-8') as pl:
         for line in pl:
             if 'marker' in line:  # Replace with your condition
                 break
@@ -71,7 +74,7 @@ else:
 
     genhtml(titl) # Adding a the Title to the index.html file
                 
-    with open('other/test.txt', 'r', encoding='utf-8') as pl:
+    with open(f'{tempPath}/{htmlPath}', 'r', encoding='utf-8') as pl:
         in_section = False
         for line in pl:
             if 'target1_marker' in line:
@@ -87,7 +90,7 @@ else:
 
     genhtml(titl) # Adding a the Title to the index.html file
                 
-    with open('other/test.txt', 'r', encoding='utf-8') as pl:
+    with open(f'{tempPath}/{htmlPath}', 'r', encoding='utf-8') as pl:
         target_found = False
         for line in pl:
             if 'target3_marker' in line:
@@ -113,7 +116,7 @@ def genjs(para): # Function to write the JavaScript content to the BookReaderJSS
 if os.path.exists(f'{contentDir}/BookReaderJSSimple.js'):
     print("BookReaderJSSimple.js already exists.")
 else:
-    with open('other/Temp.txt', 'r', encoding='utf-8') as rf:
+    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
         for line in rf:
             if 'firstMarker' in line:
                 break
@@ -122,7 +125,7 @@ else:
 
     genjs(f'return {w}; //Dynamically Added') #Adding with width return line
 
-    with open('other/Temp.txt', 'r', encoding='utf-8') as rf:
+    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'secondMarker' in line:
@@ -137,7 +140,7 @@ else:
 
     genjs(f'return {h}; //Dynamically Added') #Adding with height return line
 
-    with open('other/Temp.txt', 'r', encoding='utf-8') as rf:
+    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'fourthMarker' in line:
@@ -152,7 +155,7 @@ else:
 
     genjs(f'var leafStr = \'{bName}\'; //Dynamically Added')
 
-    with open('other/Temp.txt', 'r', encoding='utf-8') as rf:
+    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'sixthMarker' in line:
@@ -167,7 +170,7 @@ else:
 
     genjs(f'var url = \'{urlPath}\' + leafStr.replace(re, imgStr) + \'.jpg\'; //Dynamically Added') #Adding with URL path return line
 
-    with open('other/Temp.txt', 'r', encoding='utf-8') as rf:
+    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'eighthMarker' in line:
@@ -182,7 +185,7 @@ else:
 
     genjs(f'br.numLeafs = {pNum}; //Dynamically Added')
 
-    with open('other/Temp.txt', 'r', encoding='utf-8') as rf:
+    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'tenthMarker' in line:
@@ -197,7 +200,7 @@ else:
 
     genjs(f'br.bookTitle= \'{titl}\'; //Dynamically Added')
 
-    with open('other/Temp.txt', 'r', encoding='utf-8') as rf:
+    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'twelfthMarker' in line:
