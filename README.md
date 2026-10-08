@@ -1,25 +1,21 @@
+
 # Book_Reader_File_Gen
-Simple script that will generator a JS file, a HTML file, & a CSS file for Book Reader
 
-Python Script:
-Simplify the flipbook process that is currently being used
+This simple script that will generator a JS file, a HTML file, & a CSS file for the Internet Archive BookReader. Currently used for WCSU Library Archives.
 
-User creates config file
+## File Generator Script
 
-Information User Provides in config file:
-Title of Work		      ""
-Number of Pages		    ""
-Height of Scans (px)	""
-Width of Scans (px)	  ""
-Base Filename		      ""
-Base URL		          ""
+The script grabs information below that user provides below:
+- Base Directory
+- 2nd Directory
+- Content Directory
+- Title of Work
+- Number of Pages
+- Height of Scans (px)
+- Width of Scans (px)
+- Base Filename
 
+After submitting the info, the script will generate the files inside the Book_Reader_File_Gen directory.
 
-Script will create a directory where files will be placed and
-
-Files are created with information given by users and placed inside previously created directory.
-
-Once script is finished, all that the user would need to be do is to place the images inside the directory.
-
-Check previously used google sheet aquire idea of process
+Windows users may either use the provided newGui.exe provided to enter the information needed before running the script
 
