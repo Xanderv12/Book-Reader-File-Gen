@@ -17,5 +17,9 @@ The script grabs information below that user provides below:
 
 After submitting the info, the script will generate the files inside the Book_Reader_File_Gen directory.
 
-Windows users may either use the provided newGui.exe provided to enter the information needed before running the script
+>Windows users may either use the provided newGui.exe provided to enter the information needed before running the script
+>
+>>Alternatively, the configForm.html will generator the config file which then canbe placed inside the config folder
+
+
 

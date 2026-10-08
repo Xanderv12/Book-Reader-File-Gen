@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        function saveFormAsTxt() {
+    // 1. Get values from form elements
+            
+    const baseDir = document.getElementById('d1').value;
+    const secondDir = document.getElementById('d2').value;
+    const contentDir = document.getElementById('d3').value;
+    const title = document.getElementById('t').value;
+    const pages = document.getElementById('p').value;
+    const height = document.getElementById('h').value;
+    const width = document.getElementById('w').value;
+    const baseFilename = document.getElementById('b').value;
+    
+    // 2. Format as string
+    const data = `[DIRECTORIES]\nBaseDirectory = ${baseDir}\nSecondDirectory = ${secondDir}\nContentDirectory = ${contentDir}\n\n[INFORMATION]\nTitle = ${title}\nPages = ${pages}\nHeight = ${height}\nWidth = ${width}\nBase = ${baseFilename}`;
+    
+    // 3. Create Blob
+    const blob = new Blob([data], { type: 'text/plain' });
+    
+    // 4. Create download link
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'config.ini';
+    document.body.appendChild(a);
+    a.click();
+    
+    // 5. Cleanup
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}   
+    </script>
+<body>
+
+<h1>Information Needed</h1>
+
+<form action="javascript:void(0);" onsubmit="saveFormAsTxt()">
+    <h2>Directory Information</h2>
+    <p>Please fill in the information for the directories.</p>
+    <label>Base Directory:</label><br>
+    <input type="text" id="d1" name="bDirect"><br>
+    <label>2nd Directory:</label><br>
+    <input type="text" id="d2" name="2ndDirect"><br>
+    <label>Contenet Directory:</label><br>
+    <input type="text" id="d3" name="cDirect"><br>
+    
+    <h2>File Information</h2>
+    <p>Please fill in the information for the file.</p>
+    <label>Title of Work:</label><br>
+    <input type="text" id="t" name="title"><br>
+    <label>Number of Pages:</label><br>
+    <input type="number" id="p" name="pages"><br>
+    <label>Height of Scan:</label><br>
+    <input type="number" id="h" name="height"><br>
+    <label>Width of Scan:</label><br>
+    <input type="number" id="w" name="width"><br>
+    <label>Base Filename:</label><br>
+    <input type="text" id="b" name="base"><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
