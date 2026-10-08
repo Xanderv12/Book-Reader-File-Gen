@@ -1,8 +1,13 @@
 import configparser
 import os
 
+# Config path Creation
+configFolder = 'config'
+configFile = 'config.ini'
+configPath = os.path.join(configFolder, configFile)
+
 config = configparser.ConfigParser()
-config.read('config/config.ini')
+config.read(configPath)
 
 # Gather variables for each configuration value from config.ini
 
@@ -32,8 +37,10 @@ except FileExistsError:
 
 
 # 2) Creates BookReaderDemo.css file
-filename = 'BookReaderDemo.css' # Name of the CSS file
-filepath = f'{contentDir}/{filename}'
+
+# CSS file path and content
+cssName = 'BookReaderDemo.css' # Name of the CSS file
+cssPath = os.path.join(contentDir, cssName)
 
 lines = [
     "/*Custom overrides for BookReader Demo.*/\n\n", 
@@ -44,28 +51,33 @@ lines = [
 ]
 
 try:
-    with open(filepath, "x") as pl:
+    with open(cssPath, "x") as pl:
         pl.writelines(lines)
     print("BookReaderDemo.css created successfully.") # File creation confirmed
 except FileExistsError:
     print("BookReaderDemo.css already exists.")
 
 # Folder and Files Names that contains the template files of the HTML and JavaScript content
-tempPath = 'templates' 
-htmlPath = 'html.txt'
-jsPath = 'Javascript.txt'
+tempFolder = 'templates'
+htmlName = 'html.txt'
+jsName = 'Javascript.txt'
+htmlTempPath = os.path.join(tempFolder, htmlName)
+jsTempPath = os.path.join(tempFolder, jsName)
+
 
 # 3) Read contents of text file that holds the HTML
+indexName = 'index.html'
+indexPath = os.path.join(contentDir, indexName) # index.html file that will be written to
 
 def genhtml(para): # Function to write the HTML content to the index.html file
-    with open(f'{contentDir}/index.html', 'a') as f:
+    with open(indexPath, 'a') as f:
         f.write(para)
         f.write('\n')  # Add a newline after each line
 
-if os.path.exists(f'{contentDir}/index.html'):
+if os.path.exists(indexPath):
     print("index.html already exists.") # Check if index.html already exists
 else:
-    with open(f'{tempPath}/{htmlPath}', 'r', encoding='utf-8') as pl:
+    with open(htmlTempPath, 'r', encoding='utf-8') as pl:
         for line in pl:
             if 'marker' in line:  # Replace with your condition
                 break
@@ -74,7 +86,7 @@ else:
 
     genhtml(titl) # Adding a the Title to the index.html file
                 
-    with open(f'{tempPath}/{htmlPath}', 'r', encoding='utf-8') as pl:
+    with open(htmlTempPath, 'r', encoding='utf-8') as pl:
         in_section = False
         for line in pl:
             if 'target1_marker' in line:
@@ -90,7 +102,7 @@ else:
 
     genhtml(titl) # Adding a the Title to the index.html file
                 
-    with open(f'{tempPath}/{htmlPath}', 'r', encoding='utf-8') as pl:
+    with open(htmlTempPath, 'r', encoding='utf-8') as pl:
         target_found = False
         for line in pl:
             if 'target3_marker' in line:
@@ -108,15 +120,18 @@ else:
 
 
 # 4) Create the BookReaderJSSimple.js file
+jsBookName = 'BookReaderJSSimple.js'
+jsBookPath = os.path.join(contentDir, jsBookName) # BookReaderJSSimple.js file that will be written to
+
 def genjs(para): # Function to write the JavaScript content to the BookReaderJSSimple.js file
-    with open(f'{contentDir}/BookReaderJSSimple.js', 'a') as f:
+    with open(jsBookPath, 'a') as f:
         f.write(para)
         f.write('\n')  # Add a newline after each line
 
-if os.path.exists(f'{contentDir}/BookReaderJSSimple.js'):
+if os.path.exists(jsBookPath):
     print("BookReaderJSSimple.js already exists.")
 else:
-    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
+    with open(jsTempPath, 'r', encoding='utf-8') as rf:
         for line in rf:
             if 'firstMarker' in line:
                 break
@@ -125,7 +140,7 @@ else:
 
     genjs(f'return {w}; //Dynamically Added') #Adding with width return line
 
-    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
+    with open(jsTempPath, 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'secondMarker' in line:
@@ -140,7 +155,7 @@ else:
 
     genjs(f'return {h}; //Dynamically Added') #Adding with height return line
 
-    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
+    with open(jsTempPath, 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'fourthMarker' in line:
@@ -155,7 +170,7 @@ else:
 
     genjs(f'var leafStr = \'{bName}\'; //Dynamically Added')
 
-    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
+    with open(jsTempPath, 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'sixthMarker' in line:
@@ -170,7 +185,7 @@ else:
 
     genjs(f'var url = \'{urlPath}\' + leafStr.replace(re, imgStr) + \'.jpg\'; //Dynamically Added') #Adding with URL path return line
 
-    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
+    with open(jsTempPath, 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'eighthMarker' in line:
@@ -185,7 +200,7 @@ else:
 
     genjs(f'br.numLeafs = {pNum}; //Dynamically Added')
 
-    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
+    with open(jsTempPath, 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'tenthMarker' in line:
@@ -200,7 +215,7 @@ else:
 
     genjs(f'br.bookTitle= \'{titl}\'; //Dynamically Added')
 
-    with open(f'{tempPath}/{jsPath}', 'r', encoding='utf-8') as rf:
+    with open(jsTempPath, 'r', encoding='utf-8') as rf:
         in_section = False
         for line in rf:
             if 'twelfthMarker' in line:
