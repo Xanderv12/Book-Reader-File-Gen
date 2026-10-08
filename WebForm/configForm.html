@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <script type="text/javascript" src="downloadFile.js">
-    </script>
+    <head>
+        <title>BookReader ConfigGen</title>
+        <script type="text/javascript" src="downloadFile.js">
+        </script>
+    </head>
 <body>
-
 <h1>Information Needed</h1>
-
 <form action="javascript:void(0);" onsubmit="saveFormAsTxt()">
+    <!--Directory information section-->
     <h2>Directory Information</h2>
     <p>Please fill in the information for the directories.</p>
     <label>Base Directory:</label><br>
@@ -15,7 +17,7 @@
     <input type="text" id="d2" name="2ndDirect"><br>
     <label>Contenet Directory:</label><br>
     <input type="text" id="d3" name="cDirect"><br>
-    
+    <!--File information section-->
     <h2>File Information</h2>
     <p>Please fill in the information for the file.</p>
     <label>Title of Work:</label><br>
@@ -28,7 +30,6 @@
     <input type="number" id="w" name="width"><br>
     <label>Base Filename:</label><br>
     <input type="text" id="b" name="base"><br>
-
     <input type="submit" value="Submit">
 </form>
 
