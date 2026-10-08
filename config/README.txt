@@ -1,1 +1,1 @@
-Please place ONLY 1 config file in this folder at a time
+Place ONLY 1 config file in this folder at a time.
