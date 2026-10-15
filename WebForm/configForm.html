@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>BookReader ConfigGen</title>
-        <script type="text/javascript" src="downloadFile.js">
-        </script>
-    </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Config Generator</title>
+</head>
 <body>
-<h1>Information Needed</h1>
-<form action="javascript:void(0);" onsubmit="saveFormAsTxt()">
-    <!--Directory information section-->
-    <h2>Directory Information</h2>
-    <p>Please fill in the information for the directories.</p>
-    <label>Base Directory:</label><br>
-    <input type="text" id="d1" name="bDirect"><br>
-    <label>2nd Directory:</label><br>
-    <input type="text" id="d2" name="2ndDirect"><br>
-    <label>Contenet Directory:</label><br>
-    <input type="text" id="d3" name="cDirect"><br>
-    <!--File information section-->
-    <h2>File Information</h2>
-    <p>Please fill in the information for the file.</p>
-    <label>Title of Work:</label><br>
-    <input type="text" id="t" name="title"><br>
-    <label>Number of Pages:</label><br>
-    <input type="number" id="p" name="pages"><br>
-    <label>Height of Scan:</label><br>
-    <input type="number" id="h" name="height"><br>
-    <label>Width of Scan:</label><br>
-    <input type="number" id="w" name="width"><br>
-    <label>Base Filename:</label><br>
-    <input type="text" id="b" name="base"><br>
-    <input type="submit" value="Submit">
-</form>
+    <h2>Configuration Data (Web Interface)</h2>
+    <form action="update.php" method="POST">
+        <h3>Directory Information</h3>
+        <label>Base Directory:</label><br>
+        <input type="text" name="base_dir" required><br><br>
 
+        <label>Second Directory:</label><br>
+        <input type="text" name="second_dir" required><br><br>
+
+        <label>Content Directory:</label><br>
+        <input type="text" name="content_dir" required><br><br>
+
+        <h3>Document Information</h3>
+        <label>Title of Work:</label><br>
+        <input type="text" name="title" required><br><br>
+
+        <label>Number of Pages:</label><br>
+        <input type="number" name="pages" required><br><br>
+
+        <label>Height of Scans:</label><br>
+        <input type="number" name="height" required><br><br>
+
+        <label>Width of Scans:</label><br>
+        <input type="number" name="width" required><br><br>
+
+        <label>Base Filename:</label><br>
+        <input type="text" name="base" required><br><br>
+
+        <button type="submit">Save Configuration & Run</button>
+    </form>
 </body>
 </html>
-

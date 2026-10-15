@@ -1,0 +1,4 @@
+This folder will contain the html and php needed for the Webform GUI.
+After submitting info through the WebForm, the php file will grab the info submitted and place that
+into the config file. After it will run newGUI.py which will grab the info from the php file and run
+as intened.
